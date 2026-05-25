@@ -7,12 +7,12 @@
 
 <title>Churonini 💖 | Apoya nuestro contenido</title>
 
-<meta name="description" content="Apoya a Churonini y ayúdanos a crear videos divertidos, blogs y contenido familiar en TikTok.">
+<meta name="description" content="Apoya a Churonini y ayúdanos a seguir creando videos divertidos y contenido familiar en TikTok.">
 
-<!-- Google Fonts -->
+<!-- Fuente -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
+<!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -24,7 +24,6 @@
     --pink:#ff7eb3;
     --pink2:#ff4f87;
     --cyan:#25F4EE;
-    --white:#ffffff;
     --soft:#d7d7d7;
 }
 
@@ -34,21 +33,14 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     font-family:'Inter',sans-serif;
     background:linear-gradient(135deg,var(--bg1),var(--bg2));
     color:white;
     overflow-x:hidden;
-    min-height:100vh;
 }
 
-/* ========================= */
-/* FONDO ANIMADO */
-/* ========================= */
+/* FONDO */
 
 .background{
     position:fixed;
@@ -78,13 +70,6 @@ body{
     right:-60px;
 }
 
-.bubble:nth-child(3){
-    width:120px;
-    height:120px;
-    top:50%;
-    left:60%;
-}
-
 @keyframes float{
 
     0%{
@@ -101,34 +86,25 @@ body{
 
 }
 
-/* ========================= */
-/* CONTENEDOR */
-/* ========================= */
-
 .container{
     width:100%;
-    max-width:1100px;
+    max-width:1150px;
     margin:auto;
     padding:25px;
 }
 
-/* ========================= */
 /* TARJETA */
-/* ========================= */
 
 .card{
     background:var(--card);
-    backdrop-filter:blur(12px);
     border-radius:35px;
-    border:1px solid rgba(255,255,255,0.08);
     padding:45px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
     box-shadow:0 20px 70px rgba(0,0,0,0.4);
-    margin-top:25px;
 }
 
-/* ========================= */
 /* BADGE */
-/* ========================= */
 
 .badge{
     display:inline-flex;
@@ -145,9 +121,7 @@ body{
     color:var(--cyan);
 }
 
-/* ========================= */
 /* HERO */
-/* ========================= */
 
 .hero{
     text-align:center;
@@ -156,34 +130,17 @@ body{
 .profile-pic{
     width:180px;
     height:180px;
-    object-fit:cover;
     border-radius:50%;
+    object-fit:cover;
     border:5px solid var(--pink);
-    box-shadow:0 0 40px rgba(255,126,179,0.4);
     margin-bottom:22px;
-    animation:pulse 3s infinite;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.03);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
+    box-shadow:0 0 40px rgba(255,126,179,0.4);
 }
 
 .hero h1{
-    font-size:3.2rem;
-    font-weight:800;
+    font-size:3rem;
     margin-bottom:15px;
+    font-weight:800;
 
     background:linear-gradient(135deg,#ffffff,#ffb6d3);
     -webkit-background-clip:text;
@@ -191,32 +148,28 @@ body{
 }
 
 .hero p{
-    max-width:800px;
+    max-width:780px;
     margin:auto;
-    color:var(--soft);
     line-height:1.8;
-    font-size:1.1rem;
+    color:var(--soft);
 }
 
-/* ========================= */
-/* REDES */
-/* ========================= */
+/* BOTON TIKTOK */
 
 .social-buttons{
     margin-top:28px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
 }
 
 .social-buttons a{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
     text-decoration:none;
     color:white;
     background:#292942;
-    padding:13px 22px;
+    padding:14px 24px;
     border-radius:999px;
-    font-weight:600;
+    font-weight:700;
     transition:0.3s;
 }
 
@@ -225,9 +178,7 @@ body{
     transform:translateY(-3px);
 }
 
-/* ========================= */
 /* META */
-/* ========================= */
 
 .goal-box{
     margin-top:40px;
@@ -239,8 +190,8 @@ body{
 .goal-top{
     display:flex;
     justify-content:space-between;
-    gap:10px;
     flex-wrap:wrap;
+    gap:10px;
     margin-bottom:15px;
     font-weight:700;
 }
@@ -256,168 +207,157 @@ body{
 .progress-fill{
     width:68%;
     height:100%;
-    border-radius:999px;
     background:linear-gradient(90deg,var(--pink2),var(--pink));
-    transition:1s ease;
 }
 
-.goal-text{
-    margin-top:12px;
-    color:#cccccc;
-}
+/* DONAR */
 
-/* ========================= */
-/* BANNER */
-/* ========================= */
-
-.video-section{
-    margin-top:40px;
-    border-radius:28px;
-    overflow:hidden;
-    background:#101010;
-}
-
-.video-section img{
-    width:100%;
-    display:block;
-}
-
-.video-caption{
-    text-align:center;
-    padding:15px;
-    color:#dddddd;
-}
-
-/* ========================= */
-/* FEATURES */
-/* ========================= */
-
-.features{
-    margin-top:45px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:20px;
-}
-
-.feature{
+.donation-box{
+    margin-top:50px;
     background:rgba(255,255,255,0.04);
-    padding:25px;
-    border-radius:24px;
+    border-radius:30px;
+    padding:35px;
     text-align:center;
-    transition:0.3s;
 }
 
-.feature:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,0.06);
-}
-
-.feature i{
-    font-size:2rem;
-    margin-bottom:15px;
-    color:var(--pink);
-}
-
-.feature h3{
+.donation-box h2{
+    font-size:2.2rem;
     margin-bottom:10px;
 }
 
-/* ========================= */
-/* DONACIONES */
-/* ========================= */
-
-.donation{
-    margin-top:50px;
-    text-align:center;
-}
-
-.donation h2{
-    font-size:2.3rem;
-    margin-bottom:12px;
-}
-
-.donation p{
-    color:#d0d0d0;
+.donation-box p{
+    color:#cccccc;
     margin-bottom:25px;
 }
 
-/* BOTÓN PAYPAL */
+.donation-options{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
 
-.paypal-button{
+/* BOTONES */
 
+.donation-btn{
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
     display:inline-flex;
     align-items:center;
-    justify-content:center;
     gap:12px;
-
-    background:#0070ba;
-    color:white;
-
-    text-decoration:none;
-
-    padding:16px 32px;
-
+    padding:16px 28px;
     border-radius:999px;
-
-    font-size:1.1rem;
+    color:white;
     font-weight:700;
-
-    transition:0.3s ease;
-
-    box-shadow:0 10px 30px rgba(0,112,186,0.35);
-
+    font-size:1rem;
+    transition:0.3s;
 }
 
-.paypal-button:hover{
+.bank-btn{
+    background:#5b2ca0;
+}
 
+.bank-btn:hover{
+    background:#6d35c0;
     transform:translateY(-3px);
+}
 
+.paypal-btn{
+    background:#0070ba;
+}
+
+.paypal-btn:hover{
     background:#005ea6;
-
-    box-shadow:0 15px 35px rgba(0,112,186,0.45);
-
+    transform:translateY(-3px);
 }
 
-/* ========================= */
-/* ACTUALIZACIONES */
-/* ========================= */
+/* QR */
 
-.updates{
-    margin-top:55px;
+.bank-info{
+    margin-top:30px;
+    display:none;
+    animation:fadeIn 0.4s ease;
 }
 
-.updates h2{
+.bank-info img{
+    width:100%;
+    max-width:420px;
+    border-radius:20px;
     margin-bottom:20px;
+}
+
+.account-number{
     font-size:1.8rem;
+    font-weight:800;
+    color:#ffffff;
 }
 
-.update{
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+
+/* VIDEOS */
+
+.tiktok-section{
+    margin-top:60px;
+}
+
+.tiktok-section h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.video-card{
     background:rgba(255,255,255,0.05);
-    padding:22px;
-    border-radius:22px;
-    margin-bottom:15px;
+    border-radius:25px;
+    overflow:hidden;
+    transition:0.3s;
 }
 
-.update strong{
+.video-card:hover{
+    transform:translateY(-5px);
+}
+
+.video-card img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+}
+
+.video-card a{
     display:block;
-    margin-bottom:8px;
-    color:#ffb8d2;
+    text-align:center;
+    padding:16px;
+    text-decoration:none;
+    color:white;
+    font-weight:700;
 }
 
-/* ========================= */
 /* FOOTER */
-/* ========================= */
 
 footer{
     text-align:center;
-    margin:35px 0;
+    margin:40px 0;
     color:#aaaaaa;
-    font-size:0.9rem;
 }
 
-/* ========================= */
 /* RESPONSIVE */
-/* ========================= */
 
 @media(max-width:768px){
 
@@ -426,7 +366,7 @@ footer{
     }
 
     .hero h1{
-        font-size:2.3rem;
+        font-size:2.2rem;
     }
 
     .profile-pic{
@@ -441,9 +381,7 @@ footer{
 
 <body>
 
-<!-- Fondo -->
 <div class="background">
-    <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
 </div>
@@ -452,7 +390,7 @@ footer{
 
     <div class="card">
 
-        <!-- TikTok -->
+        <!-- BADGE -->
         <div class="badge">
             <i class="fab fa-tiktok"></i>
             @churonini
@@ -464,35 +402,25 @@ footer{
             <!-- CAMBIA ESTA FOTO -->
             <img
                 src="https://placehold.co/400x400/png?text=Churonini"
-                alt="Foto de Churonini"
+                alt="Churonini"
                 class="profile-pic"
             >
 
             <h1>¡Apoya a Churonini! 💖</h1>
 
             <p>
-                Somos un emprendimiento familiar creando videos divertidos,
-                blogs y contenido creativo protagonizado por una niña de 8 años ✨.
-                Tu apoyo nos ayuda a mejorar cámaras, luces, audio y seguir
-                creando contenido bonito y divertido para toda la comunidad.
+                Creamos videos divertidos, blogs y contenido familiar
+                protagonizado por una niña de 8 años ✨.
+                Tu apoyo nos ayuda a mejorar cámaras, luces y audio
+                para seguir creando contenido bonito y divertido.
             </p>
 
-            <!-- Redes -->
+            <!-- SOLO TIKTOK -->
             <div class="social-buttons">
 
                 <a href="https://www.tiktok.com/@churonini" target="_blank">
                     <i class="fab fa-tiktok"></i>
-                    TikTok
-                </a>
-
-                <a href="https://instagram.com/cristianarroyot" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                    Instagram
-                </a>
-
-                <a href="https://youtube.com/@churonini" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                    YouTube
+                    Seguir en TikTok
                 </a>
 
             </div>
@@ -506,7 +434,7 @@ footer{
 
                 <div>
                     ❤️ Recaudado:
-                    <strong id="raisedAmount">$680</strong>
+                    <strong>$680</strong>
                 </div>
 
                 <div>
@@ -517,110 +445,120 @@ footer{
             </div>
 
             <div class="progress">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <div class="goal-text">
-                👨‍👩‍👧 47 personas ya apoyaron esta campaña
-            </div>
-
-        </section>
-
-        <!-- BANNER -->
-        <section class="video-section">
-
-            <img
-                src="https://placehold.co/1400x550/1E1E2F/FFA0C0?text=Gracias+por+apoyar+a+Churonini"
-                alt="Banner Churonini"
-            >
-
-            <div class="video-caption">
-                ✨ Gracias por formar parte de este sueño ✨
-            </div>
-
-        </section>
-
-        <!-- FEATURES -->
-        <section class="features">
-
-            <div class="feature">
-                <i class="fas fa-video"></i>
-                <h3>Más contenido</h3>
-                <p>
-                    Nuevos videos divertidos y creativos todas las semanas.
-                </p>
-            </div>
-
-            <div class="feature">
-                <i class="fas fa-microphone"></i>
-                <h3>Mejor audio</h3>
-                <p>
-                    Micrófonos y sonido profesional para mejorar la calidad.
-                </p>
-            </div>
-
-            <div class="feature">
-                <i class="fas fa-camera"></i>
-                <h3>Nuevo equipo</h3>
-                <p>
-                    Cámaras, luces LED y accesorios para seguir creciendo.
-                </p>
+                <div class="progress-fill"></div>
             </div>
 
         </section>
 
         <!-- DONACIONES -->
-        <section class="donation">
+        <section class="donation-box">
 
-            <h2>Haz una donación 💕</h2>
+            <h2>Donar 💕</h2>
 
             <p>
-                Cada aporte ayuda muchísimo a seguir creando contenido.
+                Puedes apoyarnos mediante transferencia bancaria o PayPal.
             </p>
 
-            <!-- BOTÓN PAYPAL -->
-            <a 
-                href="https://www.paypal.com/ncp/payment/UKLRRRSPLYL9E"
-                target="_blank"
-                class="paypal-button"
-            >
-                <i class="fab fa-paypal"></i>
-                Donar con PayPal
-            </a>
+            <div class="donation-options">
 
-        </section>
+                <!-- TRANSFERENCIA -->
+                <button class="donation-btn bank-btn" onclick="toggleBankInfo()">
 
-        <!-- ACTUALIZACIONES -->
-        <section class="updates">
+                    <i class="fas fa-university"></i>
+                    Transferencia bancaria
 
-            <h2>
-                <i class="fas fa-newspaper"></i>
-                Últimas actualizaciones
-            </h2>
+                </button>
 
-            <div class="update">
+                <!-- PAYPAL -->
+                <a
+                    href="https://www.paypal.com/ncp/payment/UKLRRRSPLYL9E"
+                    target="_blank"
+                    class="donation-btn paypal-btn"
+                >
 
-                <strong>
-                    <i class="far fa-calendar-alt"></i>
-                    20 de mayo, 2026
-                </strong>
+                    <i class="fab fa-paypal"></i>
+                    PayPal
 
-                <p>
-                    Gracias al apoyo recibido mejoramos el audio de los videos 🎤
-                </p>
+                </a>
 
             </div>
 
-            <div class="update">
+            <!-- QR -->
+            <div class="bank-info" id="bankInfo">
 
-                <strong>
-                    <i class="far fa-calendar-alt"></i>
-                    10 de mayo, 2026
-                </strong>
+                <img src="cuenta bancaria.jpeg" alt="QR Banco">
 
-                <p>
-                    Lanzamos oficialmente nuestra página de apoyo ❤️
-                </p>
+                <div class="account-number">
+                    Nro. 7700232243
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- VIDEOS -->
+        <section class="tiktok-section">
+
+            <h2>
+                Últimos videos de TikTok 🎬
+            </h2>
+
+            <div class="video-grid">
+
+                <!-- VIDEO 1 -->
+                <div class="video-card">
+
+                    <img src="https://placehold.co/400x700/png?text=Video+1" alt="Video 1">
+
+                    <a href="https://www.tiktok.com/@churonini" target="_blank">
+                        Ver en TikTok
+                    </a>
+
+                </div>
+
+                <!-- VIDEO 2 -->
+                <div class="video-card">
+
+                    <img src="https://placehold.co/400x700/png?text=Video+2" alt="Video 2">
+
+                    <a href="https://www.tiktok.com/@churonini" target="_blank">
+                        Ver en TikTok
+                    </a>
+
+                </div>
+
+                <!-- VIDEO 3 -->
+                <div class="video-card">
+
+                    <img src="https://placehold.co/400x700/png?text=Video+3" alt="Video 3">
+
+                    <a href="https://www.tiktok.com/@churonini" target="_blank">
+                        Ver en TikTok
+                    </a>
+
+                </div>
+
+                <!-- VIDEO 4 -->
+                <div class="video-card">
+
+                    <img src="https://placehold.co/400x700/png?text=Video+4" alt="Video 4">
+
+                    <a href="https://www.tiktok.com/@churonini" target="_blank">
+                        Ver en TikTok
+                    </a>
+
+                </div>
+
+                <!-- VIDEO 5 -->
+                <div class="video-card">
+
+                    <img src="https://placehold.co/400x700/png?text=Video+5" alt="Video 5">
+
+                    <a href="https://www.tiktok.com/@churonini" target="_blank">
+                        Ver en TikTok
+                    </a>
+
+                </div>
 
             </div>
 
@@ -629,25 +567,24 @@ footer{
     </div>
 
     <footer>
-        Página oficial de apoyo a Churonini · Gracias por ser parte 💖
+        Página oficial de apoyo a Churonini 💖
     </footer>
 
 </div>
 
-<!-- BARRA DINÁMICA -->
-
 <script>
 
-const raised = 680;
-const goal = 1000;
+function toggleBankInfo(){
 
-const percent = (raised / goal) * 100;
+    const info = document.getElementById("bankInfo");
 
-document.getElementById("raisedAmount").innerText =
-`$${raised}`;
+    if(info.style.display === "block"){
+        info.style.display = "none";
+    }else{
+        info.style.display = "block";
+    }
 
-document.getElementById("progressFill").style.width =
-`${Math.min(percent,100)}%`;
+}
 
 </script>
 
