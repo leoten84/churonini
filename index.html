@@ -15,9 +15,6 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- PAYPAL SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=sb&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-
 <style>
 
 :root{
@@ -270,7 +267,7 @@ body{
 }
 
 /* ========================= */
-/* VIDEO */
+/* BANNER */
 /* ========================= */
 
 .video-section{
@@ -342,6 +339,43 @@ body{
 .donation p{
     color:#d0d0d0;
     margin-bottom:25px;
+}
+
+/* BOTÓN PAYPAL */
+
+.paypal-button{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    background:#0070ba;
+    color:white;
+
+    text-decoration:none;
+
+    padding:16px 32px;
+
+    border-radius:999px;
+
+    font-size:1.1rem;
+    font-weight:700;
+
+    transition:0.3s ease;
+
+    box-shadow:0 10px 30px rgba(0,112,186,0.35);
+
+}
+
+.paypal-button:hover{
+
+    transform:translateY(-3px);
+
+    background:#005ea6;
+
+    box-shadow:0 15px 35px rgba(0,112,186,0.45);
+
 }
 
 /* ========================= */
@@ -545,7 +579,14 @@ footer{
             </p>
 
             <!-- BOTÓN PAYPAL -->
-            <div id="paypal-container-N4TKCWT46D6WJ"></div>
+            <a 
+                href="https://www.paypal.com/ncp/payment/UKLRRRSPLYL9E"
+                target="_blank"
+                class="paypal-button"
+            >
+                <i class="fab fa-paypal"></i>
+                Donar con PayPal
+            </a>
 
         </section>
 
@@ -592,16 +633,6 @@ footer{
     </footer>
 
 </div>
-
-<!-- PAYPAL -->
-
-<script>
-
-paypal.HostedButtons({
-    hostedButtonId: "N4TKCWT46D6WJ",
-}).render("#paypal-container-N4TKCWT46D6WJ");
-
-</script>
 
 <!-- BARRA DINÁMICA -->
 
