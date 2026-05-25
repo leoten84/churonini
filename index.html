@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Churonini 💖 | Apoya nuestro contenido familiar</title>
-<meta name="description" content="Apoya a Churonini, contenido familiar divertido en TikTok. Ayúdanos a seguir creando magia y sonrisas.">
+<title>Churonini 💚 | Las aventuras de Churonini</title>
+<meta name="description" content="Apoya a Churonini y sus aventuras familiares en TikTok. Ayúdanos a seguir creando contenido divertido.">
 
 <!-- Google Fonts + Font Awesome -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- TikTok Embed SDK -->
@@ -21,25 +21,40 @@
 }
 
 :root {
-    --bg-deep: #0a0718;
-    --bg-card: #141021ee;
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --pink-primary: #ff7eb3;
-    --pink-glow: #ff4589;
+    --bg-deep: #0a0f0a;
+    --bg-card: #1a2a1cee;
+    --glass-border: rgba(210, 240, 190, 0.2);
+    --pink-primary: #ff9f7c;
+    --pink-glow: #ff7b4a;
     --cyan-tiktok: #25F4EE;
-    --soft-white: #f0f0f8;
-    --muted-lavender: #9a8cff;
+    --olive-light: #b8cf8a;
+    --olive-dark: #6f8230;
+    --soft-white: #fef9e6;
+    --adventure-gold: #f7d44a;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at 10% 20%, #0b0719, #04020f);
+    background: radial-gradient(circle at 10% 20%, #1c2a1a, #0a1208);
     color: var(--soft-white);
     overflow-x: hidden;
     line-height: 1.5;
+    position: relative;
 }
 
-/* animated background orbs */
+/* Elementos de aventura decorativos */
+.adventure-badge {
+    position: fixed;
+    font-size: 1rem;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
+}
+.adventure-badge i {
+    filter: drop-shadow(0 0 2px gold);
+}
+
+/* animated background orbs con tonos oliva */
 .orb {
     position: fixed;
     border-radius: 50%;
@@ -48,8 +63,8 @@ body {
     z-index: -2;
     animation: drift 22s infinite alternate ease-in-out;
 }
-.orb-1 { width: 500px; height: 500px; background: #ff4f87; top: -200px; left: -150px; }
-.orb-2 { width: 600px; height: 600px; background: #2b4bff; bottom: -250px; right: -150px; animation-duration: 28s; }
+.orb-1 { width: 500px; height: 500px; background: #8bb56a; top: -200px; left: -150px; }
+.orb-2 { width: 600px; height: 600px; background: #ffb347; bottom: -250px; right: -150px; animation-duration: 28s; }
 @keyframes drift {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(40px, 30px) scale(1.05); }
@@ -61,13 +76,13 @@ body {
     padding: 1.8rem 1.5rem 3rem;
 }
 
-/* Main glass card */
+/* Main glass card con borde sutil oliva */
 .glass-card {
-    background: rgba(18, 14, 32, 0.72);
+    background: rgba(26, 42, 28, 0.75);
     backdrop-filter: blur(16px);
     border-radius: 3rem;
     border: 1px solid var(--glass-border);
-    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(255,255,255,0.03);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(210,240,190,0.1);
     padding: 2.2rem;
     transition: all 0.2s ease;
 }
@@ -77,20 +92,20 @@ body {
     .glass-card { padding: 1.5rem; }
 }
 
-/* badge */
+/* badge con estilo aventura */
 .tiktok-badge {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: #000000aa;
+    background: #1a2a1ccc;
     backdrop-filter: blur(4px);
     padding: 0.6rem 1.4rem;
     border-radius: 80px;
     font-weight: 700;
     font-size: 0.9rem;
-    letter-spacing: -0.2px;
     margin-bottom: 2rem;
-    border: 0.5px solid rgba(255,255,240,0.15);
+    border: 1px solid var(--olive-light);
+    color: var(--olive-light);
 }
 .tiktok-badge i { color: var(--cyan-tiktok); font-size: 1.3rem; }
 
@@ -99,18 +114,18 @@ body {
     text-align: center;
 }
 .avatar {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid var(--pink-primary);
-    box-shadow: 0 20px 35px rgba(255, 126, 179, 0.3), 0 0 0 6px rgba(255,255,255,0.05);
+    border: 4px solid var(--olive-light);
+    box-shadow: 0 20px 35px rgba(111, 130, 48, 0.4), 0 0 0 6px rgba(255,215,0,0.2);
     margin-bottom: 1.5rem;
 }
 .hero-wrap h1 {
     font-size: 2.8rem;
     font-weight: 800;
-    background: linear-gradient(125deg, #FFF, #ffb8d6, #ff92bf);
+    background: linear-gradient(125deg, #f9f3c1, #d4e6a3, #ffcf9a);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -119,7 +134,7 @@ body {
 .hero-desc {
     max-width: 700px;
     margin: 0 auto;
-    color: #cfcfec;
+    color: #e2f0cf;
     font-weight: 400;
     font-size: 1.05rem;
 }
@@ -127,7 +142,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(145deg, #1e1a34, #120e24);
+    background: linear-gradient(145deg, #2c3e24, #1e2e18);
     padding: 0.85rem 2rem;
     border-radius: 50px;
     margin-top: 1.8rem;
@@ -135,10 +150,10 @@ body {
     color: white;
     font-weight: 700;
     transition: 0.2s;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--olive-light);
 }
 .tiktok-btn i { font-size: 1.3rem; color: var(--cyan-tiktok); }
-.tiktok-btn:hover { background: var(--pink-glow); transform: translateY(-3px); border-color: var(--pink-primary); box-shadow: 0 8px 18px rgba(255,69,100,0.3); }
+.tiktok-btn:hover { background: var(--pink-glow); transform: translateY(-3px); border-color: var(--adventure-gold); box-shadow: 0 8px 18px rgba(0,0,0,0.3); }
 
 /* Goal progress */
 .goal-panel {
@@ -146,6 +161,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
     border-radius: 2rem;
     padding: 1.5rem;
+    border: 1px solid rgba(184, 207, 138, 0.3);
 }
 .goal-stats {
     display: flex;
@@ -156,7 +172,7 @@ body {
     margin-bottom: 12px;
 }
 .progress-bg {
-    background: #2a253f;
+    background: #2a3a24;
     border-radius: 50px;
     height: 14px;
     overflow: hidden;
@@ -164,19 +180,19 @@ body {
 .progress-fill {
     width: 68%;
     height: 100%;
-    background: linear-gradient(90deg, var(--pink-primary), #ff4f9e);
+    background: linear-gradient(90deg, var(--olive-light), #c7a84b);
     border-radius: 50px;
-    box-shadow: 0 0 8px #ff7eb3;
+    box-shadow: 0 0 8px var(--adventure-gold);
 }
 
 /* donation row */
 .donation-wrapper {
     margin-top: 2.8rem;
-    background: rgba(255,255,245,0.02);
+    background: rgba(30, 46, 24, 0.6);
     border-radius: 2rem;
     padding: 2rem 1.8rem;
     text-align: center;
-    border: 1px solid rgba(255,255,215,0.05);
+    border: 1px solid rgba(184, 207, 138, 0.4);
 }
 .donation-wrapper h2 {
     font-size: 2rem;
@@ -184,7 +200,7 @@ body {
     margin-bottom: 0.7rem;
 }
 .donation-wrapper p {
-    color: #bcb9e0;
+    color: #dcefc2;
     margin-bottom: 2rem;
 }
 .btn-group {
@@ -205,34 +221,35 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: 0.2s ease;
-    background: #2a234a;
+    background: #3c5832;
     color: white;
 }
 .bank-style {
-    background: #3e2c6e;
+    background: #5f794b;
     box-shadow: 0 5px 12px rgba(0,0,0,0.3);
 }
-.bank-style:hover { background: #5c3d9c; transform: scale(0.97); }
+.bank-style:hover { background: #7b9e60; transform: scale(0.97); }
 .paypal-style {
     background: #0070ba;
 }
 .paypal-style:hover { background: #005c9e; transform: scale(0.97); }
 
-/* QR + bank info */
+/* QR + bank info - solo De una */
 .bank-detail {
     margin-top: 2rem;
     display: none;
     animation: fadeSlide 0.35s ease;
-    background: rgba(10,8,20,0.7);
+    background: rgba(10, 20, 8, 0.8);
     border-radius: 1.8rem;
     padding: 1.5rem;
+    border: 1px solid var(--olive-light);
 }
 .bank-detail img {
     max-width: 220px;
     border-radius: 1.2rem;
     margin-bottom: 1rem;
     box-shadow: 0 15px 25px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid var(--adventure-gold);
 }
 .account-number {
     font-size: 1.6rem;
@@ -248,7 +265,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Video Gallery Section - Nueva galería interactiva con enlaces directos */
+/* Video Gallery Section - estilo aventura */
 .video-gallery-section {
     margin-top: 3.5rem;
 }
@@ -279,36 +296,20 @@ body {
     border-radius: 1.8rem;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(184, 207, 138, 0.5);
     cursor: pointer;
 }
 .video-card-custom:hover {
     transform: translateY(-10px) scale(1.02);
-    border-color: var(--pink-primary);
-    box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,126,179,0.3);
+    border-color: var(--adventure-gold);
+    box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(247,212,74,0.4);
 }
 .video-thumb-wrapper {
     position: relative;
     aspect-ratio: 9 / 16;
     width: 100%;
     overflow: hidden;
-    background: #0b0719;
-}
-.video-thumb-wrapper iframe,
-.video-thumb-wrapper .tiktok-embed {
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Evita clics accidentales sobre el embed, usamos el enlace del contenedor */
-}
-.video-card-custom a {
-    text-decoration: none;
-    display: block;
-}
-.video-card-custom .video-link-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: transparent;
+    background: #1b2a14;
 }
 .video-info {
     padding: 1rem;
@@ -319,12 +320,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    color: #f0d9ff;
+    color: #faf0cf;
     transition: background 0.2s;
 }
 .video-card-custom:hover .video-info {
-    background: rgba(255,71,136,0.75);
-    color: white;
+    background: #8bb56ad9;
+    color: #1a2a14;
 }
 .video-info i {
     font-size: 1.1rem;
@@ -333,7 +334,7 @@ body {
     font-size: 0.8rem;
     text-align: center;
     padding: 0.5rem;
-    background: #00000055;
+    background: #1e2e18aa;
     border-radius: 2rem;
     width: fit-content;
     margin: 1.5rem auto 0;
@@ -341,9 +342,21 @@ body {
 footer {
     text-align: center;
     margin-top: 3rem;
-    color: #9f9bc2;
+    color: #c0dc9a;
     font-size: 0.85rem;
 }
+
+/* Elementos decorativos de aventura (brújula, huellas) */
+.deco-icon {
+    position: fixed;
+    font-size: 3rem;
+    opacity: 0.07;
+    z-index: -1;
+    pointer-events: none;
+}
+.deco-1 { bottom: 20px; left: 20px; }
+.deco-2 { top: 100px; right: 40px; transform: rotate(15deg); }
+.deco-3 { bottom: 30%; left: 5%; }
 </style>
 </head>
 <body>
@@ -351,22 +364,25 @@ footer {
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 
+<!-- Iconos decorativos de aventura -->
+<div class="deco-icon deco-1"><i class="fas fa-map"></i></div>
+<div class="deco-icon deco-2"><i class="fas fa-compass"></i></div>
+<div class="deco-icon deco-3"><i class="fas fa-tree"></i></div>
+
 <div class="container">
     <div class="glass-card">
         
-        <!-- TikTok badge -->
         <div class="tiktok-badge">
-            <i class="fab fa-tiktok"></i> @churonini · familia creativa
+            <i class="fab fa-tiktok"></i> @churonini · aventuras en familia
         </div>
 
-        <!-- Hero -->
         <div class="hero-wrap">
-            <img src="churonini.jpeg" alt="Churonini perfil" class="avatar" onerror="this.src='https://placehold.co/400x400/png?text=Churonini'">
-            <h1>¡Apoya a Churonini! ✨</h1>
+            <!-- Foto de perfil: churonini.jpeg (debe estar en el mismo directorio) -->
+            <img src="churonini.jpeg" alt="Churonini aventurera" class="avatar" onerror="this.src='https://placehold.co/400x400/6f8230/ffd966?text=Churonini'">
+            <h1>✨ Las aventuras de Churonini ✨</h1>
             <p class="hero-desc">
-                Videos divertidos, retos familiares y la energía de una niña de 8 años 💕  
-                Con tu ayuda mejoramos equipo, luces y editamos con más amor cada video.  
-                ¡Creamos sonrisas juntos!
+                💚 Videos divertidos, retos y mucha imaginación de una pequeña gran soñadora.  
+                Con tu apoyo seguimos explorando, creando y compartiendo sonrisas. ¡Únete a la aventura!
             </p>
             <div>
                 <a href="https://www.tiktok.com/@churonini" target="_blank" class="tiktok-btn">
@@ -375,22 +391,22 @@ footer {
             </div>
         </div>
 
-        <!-- Goal -->
+        <!-- Meta de recaudación -->
         <div class="goal-panel">
             <div class="goal-stats">
-                <span><i class="fas fa-heart" style="color:#ff7eb3;"></i> Recaudado: <strong>$680 USD</strong></span>
+                <span><i class="fas fa-heart" style="color:#f7d44a;"></i> Recaudado: <strong>$680 USD</strong></span>
                 <span><i class="fas fa-flag-checkered"></i> Meta: <strong>$1000 USD</strong></span>
             </div>
             <div class="progress-bg">
                 <div class="progress-fill" style="width:68%"></div>
             </div>
-            <p style="font-size:0.8rem; margin-top:12px;">✨ Cada aporte impulsa nuestros videos ✨</p>
+            <p style="font-size:0.8rem; margin-top:12px;">🧭 Cada aporte nos lleva a nuevas aventuras 🧭</p>
         </div>
 
-        <!-- DONATIONS: Transfer + PayPal (actualizado banco "De una") -->
+        <!-- DONACIONES: Transferencia (Banco De una) + PayPal -->
         <div class="donation-wrapper">
-            <h2>Colabora con nuestro sueño 💖</h2>
-            <p>Transferencia bancaria o PayPal — el apoyo nos motiva a seguir creando</p>
+            <h2>Apoya la aventura 💖</h2>
+            <p>Transferencia bancaria o PayPal — tu granito de arena hace magia</p>
             <div class="btn-group">
                 <button class="donate-btn bank-style" id="showBankBtn">
                     <i class="fas fa-building-columns"></i> Transferencia / Depósito
@@ -399,39 +415,37 @@ footer {
                     <i class="fab fa-paypal"></i> PayPal
                 </a>
             </div>
-            <!-- Bank info con el nombre actualizado: Banco "De una" -->
+            <!-- Información bancaria: solo Banco "De una" sin rastro de Davivienda/BCP -->
             <div id="bankInfoBlock" class="bank-detail">
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="cuenta%20bancaria.jpeg" alt="Código QR Banco" onerror="this.src='https://placehold.co/300x300/241f3c/ffb6d9?text=QR+Banco';">
+                    <img src="cuenta%20bancaria.jpeg" alt="Código QR Banco" onerror="this.src='https://placehold.co/300x300/5f794b/f7d44a?text=QR+De+una';">
                     <div class="account-number">
                         <i class="fas fa-credit-card"></i> Nro. 7700 2322 43
                     </div>
-                    <p style="margin-top: 12px; font-size: 0.9rem; background: #2a1d44; padding: 6px 14px; border-radius: 30px;">
+                    <p style="margin-top: 12px; font-size: 0.9rem; background: #3c5832; padding: 6px 18px; border-radius: 40px;">
                         <i class="fas fa-university"></i> Banco: De una
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- NUEVA GALERÍA: VIDEOS MANUALES CON INTERACCIÓN Y ENLACES DIRECTOS -->
+        <!-- GALERÍA DE VIDEOS (con los enlaces que diste) -->
         <div class="video-gallery-section">
-            <h2><i class="fab fa-tiktok"></i> Nuestros últimos videos <i class="fas fa-arrow-right"></i></h2>
-            <div class="video-grid-custom" id="customVideoGallery">
-                <!-- Los 4 videos se construirán con JavaScript para un render más limpio -->
-            </div>
+            <h2><i class="fab fa-tiktok"></i> Últimas aventuras <i class="fas fa-feather-alt"></i></h2>
+            <div class="video-grid-custom" id="customVideoGallery"></div>
             <div class="fallback-note">
-                <i class="fas fa-hand-pointer"></i> Haz clic en cualquier video para verlo directamente en TikTok
+                <i class="fas fa-hand-pointer"></i> Haz clic en cualquier video para verlo en TikTok y vivir la aventura
             </div>
         </div>
 
         <footer>
-            <i class="fas fa-crown"></i> Apoyo oficial a Churonini — contenido familiar y auténtico 💖
+            <i class="fas fa-crown"></i> Apoyo oficial a Churonini — contenido familiar lleno de magia y diversión 💚
         </footer>
     </div>
 </div>
 
 <script>
-    // ----- TOGGLE para información bancaria -----
+    // Toggle para información bancaria (solo Banco De una)
     const showBankBtn = document.getElementById('showBankBtn');
     const bankInfoDiv = document.getElementById('bankInfoBlock');
     if (showBankBtn && bankInfoDiv) {
@@ -447,7 +461,7 @@ footer {
         bankInfoDiv.style.display = 'none';
     }
 
-    // Lista de enlaces de TikTok proporcionados (short links)
+    // Lista de enlaces de TikTok proporcionados
     const videoUrls = [
         "https://vt.tiktok.com/ZSx9btrqq/",
         "https://vt.tiktok.com/ZSx9bwvv2/",
@@ -455,53 +469,15 @@ footer {
         "https://vt.tiktok.com/ZSx9b4x7F/"
     ];
 
-    // Función para generar el embed de TikTok usando bloque blockquote (oficial)
-    function generateTikTokEmbed(videoUrl, containerId) {
-        // Creamos un contenedor div para el bloque blockquote
-        const embedContainer = document.createElement('div');
-        embedContainer.className = 'tiktok-embed-wrapper';
-        const blockquote = document.createElement('blockquote');
-        blockquote.className = 'tiktok-embed';
-        blockquote.setAttribute('cite', videoUrl);
-        blockquote.style.maxWidth = '100%';
-        blockquote.style.minWidth = '200px';
-        blockquote.style.margin = '0';
-        blockquote.style.padding = '0';
-        // Enlace de respaldo
-        const a = document.createElement('a');
-        a.href = videoUrl;
-        a.target = '_blank';
-        a.textContent = 'Ver en TikTok';
-        blockquote.appendChild(a);
-        embedContainer.appendChild(blockquote);
-        
-        // Limpiar el contenedor y agregar el bloque
-        const targetDiv = document.getElementById(containerId);
-        if (targetDiv) {
-            targetDiv.innerHTML = '';
-            targetDiv.appendChild(embedContainer);
-            // Forzar recarga del SDK de TikTok para que renderice el nuevo embed
-            if (window.TikTokEmbed) {
-                setTimeout(() => window.TikTokEmbed.load(), 100);
-            } else {
-                const checkTikTok = setInterval(() => {
-                    if (window.TikTokEmbed && typeof window.TikTokEmbed.load === 'function') {
-                        window.TikTokEmbed.load();
-                        clearInterval(checkTikTok);
-                    }
-                }, 300);
-            }
-        }
-    }
-
-    // Construir galería manualmente: cada tarjeta con un contenedor único + enlace directo en el wrapper
+    // Construir galería de videos
     const galleryContainer = document.getElementById('customVideoGallery');
     if (galleryContainer) {
         galleryContainer.innerHTML = '';
         videoUrls.forEach((url, index) => {
             const card = document.createElement('div');
             card.className = 'video-card-custom';
-            // Envolvemos la tarjeta en un enlace que lleva directamente a TikTok
+            
+            // Enlace directo a TikTok (toda la tarjeta es clickeable)
             const linkWrapper = document.createElement('a');
             linkWrapper.href = url;
             linkWrapper.target = '_blank';
@@ -510,10 +486,8 @@ footer {
             linkWrapper.style.textDecoration = 'none';
             linkWrapper.style.color = 'inherit';
             
-            // Miniatura / preview: incrustamos el mismo embed de TikTok, pero deshabilitamos la interacción directa
             const embedArea = document.createElement('div');
             embedArea.className = 'video-thumb-wrapper';
-            // Asignamos un ID único para cada embed
             const embedId = `tiktokEmbed_${index}`;
             embedArea.id = embedId;
             
@@ -526,7 +500,7 @@ footer {
             card.appendChild(linkWrapper);
             galleryContainer.appendChild(card);
             
-            // Cargar el embed dentro del contenedor específico
+            // Cargar embed de TikTok dentro del contenedor
             setTimeout(() => {
                 const embedContainer = document.getElementById(embedId);
                 if (embedContainer) {
@@ -557,11 +531,10 @@ footer {
                         }, 400);
                     }
                 }
-            }, 50);
+            }, 80);
         });
     }
     
-    // Asegurar que el SDK de TikTok cargue cualquier embed posterior
     window.addEventListener('load', () => {
         if (window.TikTokEmbed) window.TikTokEmbed.load();
     });
