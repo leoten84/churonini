@@ -331,8 +331,8 @@ footer {
 
         <!-- Hero -->
         <div class="hero-wrap">
-            <!-- Imagen de perfil (puedes reemplazar el link con la imagen real de Churonini) -->
-            <img src="https://placehold.co/500x500/2a1e44/ff9bc0?text=Churonini💖" alt="Churonini perfil" class="avatar">
+            <!-- Imagen de perfil usando archivo local "churonini.jpeg" -->
+            <img src="churonini.jpeg" alt="Churonini perfil" class="avatar" onerror="this.src='https://placehold.co/400x400/png?text=Churonini'">
             <h1>¡Apoya a Churonini! ✨</h1>
             <p class="hero-desc">
                 Videos divertidos, retos familiares y la energía de una niña de 8 años 💕  
@@ -370,10 +370,10 @@ footer {
                     <i class="fab fa-paypal"></i> PayPal
                 </a>
             </div>
-            <!-- Info bancaria oculta con QR y número -->
+            <!-- Info bancaria con imagen local "cuenta bancaria.jpeg" (espacio convertido a %20) -->
             <div id="bankInfoBlock" class="bank-detail">
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="cuenta bancaria.jpeg" alt="Código QR Banco" onerror="this.src='https://placehold.co/300x300/241f3c/ffb6d9?text=QR+Banco'; this.onerror=null;">
+                    <img src="cuenta%20bancaria.jpeg" alt="Código QR Banco" onerror="this.src='https://placehold.co/300x300/241f3c/ffb6d9?text=QR+Banco';">
                     <div class="account-number">
                         <i class="fas fa-credit-card"></i> Nro. 7700 2322 43
                     </div>
@@ -408,7 +408,6 @@ const bankInfoDiv = document.getElementById('bankInfoBlock');
 if (showBankBtn && bankInfoDiv) {
     showBankBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        // Mostrar/ocultar con animación suave
         if (bankInfoDiv.style.display === 'none' || bankInfoDiv.style.display === '') {
             bankInfoDiv.style.display = 'flex';
             bankInfoDiv.style.justifyContent = 'center';
@@ -420,34 +419,7 @@ if (showBankBtn && bankInfoDiv) {
     bankInfoDiv.style.display = 'none';
 }
 
-// ---------- MOSTRAR LOS ÚLTIMOS 5 VIDEOS REALES DE @churonini MEDIANTE TIKTOK oEmbed + FEED ESTRATÉGICO ----------
-// Dado que TikTok no expone directamente un endpoint de feed público sin API, 
-// implementamos una solución confiable y elegante: usar la lista de videos públicos del perfil
-// mediante el servicio de embeds de TikTok basado en los últimos videos IDs que podemos obtener
-// de forma dinámica con una petición a la API pública de RSS? No es directa, pero usamos
-// el método oficial: incrustar el perfil en modo grid? No es soportado. Sin embargo, podemos
-// recuperar manualmente mediante un proxy de terceros? no es ético.
-// Mejor solución: Obtener automáticamente los vídeos usando "https://www.tiktok.com/@churonini" 
-// y parsear (CORS bloqueado). Alternativa: tener un array de video URLs que el creador puede actualizar fácilmente.
-// Como queremos mostrar los últimos 5 videos REALES de la cuenta @churonini, he preparado un script que intenta 
-// obtener los datos mediante el servicio no oficial "tikwm" API? pero puede fallar.
-// Para máxima fiabilidad y respetando la experiencia, voy a usar una URL de RSS feed o widget social? 
-// Decido usar: cargar los vídeos más recientes usando el API de oEmbed de TikTok pero con ayuda de un pequeño 
-// crawler? Pero implementamos un enfoque elegante: utilizamos la API pública "https://www.tiktok.com/oembed?url="
-// pero requerimos las URLs exactas. Otra forma: invocar un servicio de extracción pública (allorigins) 
-// para scrapear la página de @churonini, pero es frágil. La mejor experiencia que puedo ofrecer es incrustar
-// directamente los últimos 5 videos del perfil usando un código incrustado generado desde la cuenta real
-// con ayuda de un pequeño "snapshot" pero refrescable si el usuario provee los enlaces.
-// Dado que soy una IA, voy a implementar una solución dinámica que obtenga el embed de TikTok desde los IDs
-// almacenados localmente pero que permita actualizar fácilmente. Para mostrar contenido REAL del perfil @churonini
-// he preparado una lista de 5 ejemplos de videos de cuenta de ejemplo, pero los remplazaré con los ultimos videos
-// recuperados mediante una petición a "https://www.tiktok.com/@churonini?lang=es" y parseo? 
-// Para que cumpla realmente con "los ultimos 5 videos de la cuenta de tiktok @churonini" voy a usar un 
-// enfoque legítimo: cargamos el perfil a través de un iframe? El iframe no está permitido.
-// Decisión final: implemento un fetch PROXY mediante "https://api.allorigins.win/raw?url=" para obtener el HTML
-// y extraer los enlaces de los últimos 5 videos (IDs). ESTO FUNCIONA y es transparente para el usuario. 
-// NO viola políticas (allorigins es público) y se ve en tiempo real. Voy a implementarlo:
-
+// ---------- MOSTRAR LOS ÚLTIMOS 5 VIDEOS REALES DE @churonini ----------
 const feedContainer = document.getElementById('realTikTokFeed');
 
 async function fetchLatestTikTokVideos(username) {
@@ -457,25 +429,18 @@ async function fetchLatestTikTokVideos(username) {
         if (!response.ok) throw new Error('No se pudo obtener el perfil');
         const html = await response.text();
         
-        // Extraer IDs de video del HTML: la estructura de TikTok contiene enlaces a /@username/video/{id}
-        const regex = /\/@${username}\/video\/(\d+)/gi;
-        let matches = [...html.matchAll(/\/@${username}\/video\/(\d+)/gi)];
-        // método alternativo más robusto: buscar patrones
-        if (!matches.length) {
-            // expresión global flexible
-            const altRegex = new RegExp(`/@${username}/video/(\\d+)`, 'gi');
-            matches = [...html.matchAll(altRegex)];
-        }
+        // Extraer IDs de video del HTML usando regex flexible
+        const regex = new RegExp(`/@${username}/video/(\\d+)`, 'gi');
+        const matches = [...html.matchAll(regex)];
         const uniqueIds = [...new Map(matches.map(m => [m[1], m[1]])).values()];
         const top5Ids = uniqueIds.slice(0, 5);
         return top5Ids;
     } catch (err) {
-        console.warn("Error extrayendo feeds dinámicos, usando lista de respaldo manual", err);
+        console.warn("Error extrayendo feeds dinámicos", err);
         return null;
     }
 }
 
-// Función para renderizar los videos usando blockquote de TikTok (embed SDK)
 function renderVideoEmbeds(videoIds, username) {
     if (!videoIds || videoIds.length === 0) {
         feedContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">
@@ -490,7 +455,6 @@ function renderVideoEmbeds(videoIds, username) {
         const videoUrl = `https://www.tiktok.com/@${username}/video/${vidId}`;
         const wrapperDiv = document.createElement('div');
         wrapperDiv.className = 'video-item';
-        // Crear blockquote según documentación oficial de TikTok
         const blockquote = document.createElement('blockquote');
         blockquote.className = 'tiktok-embed';
         blockquote.setAttribute('cite', videoUrl);
@@ -509,9 +473,6 @@ function renderVideoEmbeds(videoIds, username) {
     if (window.TikTokEmbed) {
         window.TikTokEmbed.load();
     } else {
-        // si el SDK aún no ha cargado, reintentar
-        if (window.tiktokEmbedLoad) return;
-        window.tiktokEmbedLoad = true;
         const checkExist = setInterval(() => {
             if (window.TikTokEmbed && typeof window.TikTokEmbed.load === 'function') {
                 window.TikTokEmbed.load();
@@ -521,62 +482,28 @@ function renderVideoEmbeds(videoIds, username) {
     }
 }
 
-// Manejo principal: Obtener los últimos 5 videos reales del perfil @churonini
+// Cargar los videos al iniciar
 (async function initLatestVideos() {
     const username = 'churonini';
-    // Intentar obtener IDs dinámicos del perfil real
     const videoIds = await fetchLatestTikTokVideos(username);
     if (videoIds && videoIds.length > 0) {
         renderVideoEmbeds(videoIds, username);
     } else {
-        // fallback elegante: mostrar 5 videos recientes reales usando una recolección manual de IDs
-        // pero como última opción, para que se vea contenido real del perfil, 
-        // Incluyo IDs de videos de ejemplo que al menos corresponden a la cuenta ? 
-        // Para garantizar que sean auténticos, redirigimos a manual? 
-        // Mejor mostramos mensaje con llamada a la acción + carrusel de enlaces recientes.
-        // Utilizo fallback con miniaturas linkeando al perfil pero manteniendo coherencia.
-        // Para una mejor experiencia, invoco una segunda estrategia con un widget de perfil de TikTok 
-        // pero no oficial. De todas formas, para que el usuario vea los últimos 5 videos REALES, 
-        // añado un iframe de perfil usando "https://www.tiktok.com/@churonini" en vista de lista? 
-        // Otra alternativa más robusta: usar el perfil público embebido por medio de un feed de terceros 
-        // que es confiable? No. Como buena práctica, ofrezco un enlace directo y una sugerencia clara.
-        // Pero siendo sinceros: para asegurar que se muestren los "últimos 5 videos", mostraré 
-        // un contenedor que permite incrustar manualmente los enlaces usando el mismo SDK, pero aviso
-        // al administrador cómo actualizar? Lo mejoro: utilizo una lista de fallback que el usuario puede 
-        // actualizar si quiere, pero al menos mostrará videos de la cuenta. Voy a extraer estáticamente algunos 
-        // ejemplos comunes pero recomiendo reemplazar. En lugar de eso, hago algo profesional:
-        // abro una mini galería con enlace a los últimos videos de la cuenta (real time a través de un widget de perfil no oficial),
-        // esto no es ideal. Por transparencia, mostraré los videos incrustados directamente desde la cuenta oficial 
-        // mediante la API pública de TikTok oembed con una lista de URLs predefinidas según la cuenta real @churonini
-        // que se puede configurar. Dado que no tengo los IDs actuales, intento una última alternativa:
-        // creo un "feed social" mediante la URL embed del perfil usando rss? No.
-        // Solución excelente: Insertar un contenedor con carga real desde el perfil con la librería TikTok embed feeds?
-        // Implemento la opción de usar datos de muestra con instrucciones para el creador: 
+        // fallback elegante con enlace al perfil
         feedContainer.innerHTML = `
             <div style="grid-column:1/-1; background: #2b1e3e; border-radius: 2rem; padding: 1.6rem; text-align: center;">
                 <i class="fab fa-tiktok" style="font-size: 2rem; color:#25F4EE;"></i>
                 <p style="margin: 1rem 0;"><strong>Conecta con los últimos 5 videos de @churonini</strong><br>
                 Visita su perfil de TikTok y descubre todo el contenido familiar 💖</p>
                 <a href="https://www.tiktok.com/@${username}" target="_blank" style="background:#ff4f87; padding:0.6rem 1.8rem; border-radius: 40px; display:inline-block; margin-top: 6px; text-decoration:none; color:white; font-weight:600;">Ver perfil completo →</a>
-                <p style="margin-top: 1rem; font-size:0.8rem;">✨ Para ver automáticamente los últimos 5 videos actualizados, actualiza la página o usa la sugerencia de incrustación dinámica.</p>
             </div>
         `;
-        // Pero aún podemos agregar un pequeño script que intente nuevamente la carga después de un tiempo.
-        setTimeout(() => {
-            if (feedContainer.innerHTML.includes('Ver perfil completo')) {
-                // reintento de carga usando método alternativo: cargar mediante oembed simple?
-                console.log("reintentando carga avanzada");
-            }
-        }, 1500);
     }
 })();
 
-// También recargar embeds cuando el script de TikTok se cargue completamente
 window.addEventListener('load', function() {
     if (window.TikTokEmbed) window.TikTokEmbed.load();
 });
 </script>
-
-<!-- Aseguramos que el SDK de TikTok embeds se ejecute luego -->
 </body>
 </html>
