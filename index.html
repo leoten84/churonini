@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- TikTok Embed SDK (para mostrar videos reales de la cuenta) -->
+<!-- TikTok Embed SDK -->
 <script async src="https://www.tiktok.com/embed.js"></script>
 
 <style>
@@ -248,11 +248,11 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* TikTok videos - última sección con EMBED REAL */
-.video-showcase {
+/* Video Gallery Section - Nueva galería interactiva con enlaces directos */
+.video-gallery-section {
     margin-top: 3.5rem;
 }
-.video-showcase h2 {
+.video-gallery-section h2 {
     font-size: 1.9rem;
     text-align: center;
     margin-bottom: 1.5rem;
@@ -261,43 +261,73 @@ body {
     justify-content: center;
     gap: 12px;
 }
-.video-showcase h2 i {
+.video-gallery-section h2 i {
     color: var(--cyan-tiktok);
 }
-.video-grid-dynamic {
+.video-grid-custom {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.8rem;
     justify-content: center;
 }
-.video-item {
+.video-card-custom {
     flex: 1;
     min-width: 260px;
-    max-width: 320px;
-    background: rgba(0,0,0,0.3);
+    max-width: 300px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
     border-radius: 1.8rem;
     overflow: hidden;
-    backdrop-filter: blur(3px);
-    transition: all 0.25s;
-    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
 }
-.video-item:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,126,179,0.5);
+.video-card-custom:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--pink-primary);
+    box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,126,179,0.3);
 }
-.embed-placeholder {
+.video-thumb-wrapper {
+    position: relative;
     aspect-ratio: 9 / 16;
     width: 100%;
-    position: relative;
-    background: #0f0c1c;
+    overflow: hidden;
+    background: #0b0719;
 }
-.tiktok-embed {
-    margin: 0 !important;
-    min-width: unset !important;
+.video-thumb-wrapper iframe,
+.video-thumb-wrapper .tiktok-embed {
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Evita clics accidentales sobre el embed, usamos el enlace del contenedor */
 }
-/* adapt embed */
-.tiktok-embed iframe {
-    border-radius: 1rem;
+.video-card-custom a {
+    text-decoration: none;
+    display: block;
+}
+.video-card-custom .video-link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: transparent;
+}
+.video-info {
+    padding: 1rem;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #f0d9ff;
+    transition: background 0.2s;
+}
+.video-card-custom:hover .video-info {
+    background: rgba(255,71,136,0.75);
+    color: white;
+}
+.video-info i {
+    font-size: 1.1rem;
 }
 .fallback-note {
     font-size: 0.8rem;
@@ -306,7 +336,7 @@ body {
     background: #00000055;
     border-radius: 2rem;
     width: fit-content;
-    margin: 1rem auto 0;
+    margin: 1.5rem auto 0;
 }
 footer {
     text-align: center;
@@ -331,8 +361,7 @@ footer {
 
         <!-- Hero -->
         <div class="hero-wrap">
-            <!-- Imagen de perfil usando archivo local "churonini.jpeg" -->
-            <img src="churonini.jpeg" alt="Churonini" class="avatar">
+            <img src="churonini.jpeg" alt="Churonini perfil" class="avatar" onerror="this.src='https://placehold.co/400x400/png?text=Churonini'">
             <h1>¡Apoya a Churonini! ✨</h1>
             <p class="hero-desc">
                 Videos divertidos, retos familiares y la energía de una niña de 8 años 💕  
@@ -346,7 +375,7 @@ footer {
             </div>
         </div>
 
-        <!-- Meta de recaudación -->
+        <!-- Goal -->
         <div class="goal-panel">
             <div class="goal-stats">
                 <span><i class="fas fa-heart" style="color:#ff7eb3;"></i> Recaudado: <strong>$680 USD</strong></span>
@@ -355,10 +384,10 @@ footer {
             <div class="progress-bg">
                 <div class="progress-fill" style="width:68%"></div>
             </div>
-            <p style="font-size:0.8rem; margin-top:12px;">✨ Cada aporte impulsa nuestros videos y nuevas ideas ✨</p>
+            <p style="font-size:0.8rem; margin-top:12px;">✨ Cada aporte impulsa nuestros videos ✨</p>
         </div>
 
-        <!-- DONACIONES: dos opciones (Transferencia / PayPal) -->
+        <!-- DONATIONS: Transfer + PayPal (actualizado banco "De una") -->
         <div class="donation-wrapper">
             <h2>Colabora con nuestro sueño 💖</h2>
             <p>Transferencia bancaria o PayPal — el apoyo nos motiva a seguir creando</p>
@@ -370,27 +399,28 @@ footer {
                     <i class="fab fa-paypal"></i> PayPal
                 </a>
             </div>
-            <!-- Info bancaria con imagen local "cuenta bancaria.jpeg" (espacio convertido a %20) -->
+            <!-- Bank info con el nombre actualizado: Banco "De una" -->
             <div id="bankInfoBlock" class="bank-detail">
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="cuenta%20bancaria.jpeg" alt="Código QR Banco" onerror="this.src='https://placehold.co/300x300/241f3c/ffb6d9?text=QR+Banco';">
                     <div class="account-number">
                         <i class="fas fa-credit-card"></i> Nro. 7700 2322 43
                     </div>
-                    <p style="margin-top: 12px; font-size: 0.85rem;">Banco: Davivienda / BCP | Titular: Churonini Family</p>
+                    <p style="margin-top: 12px; font-size: 0.9rem; background: #2a1d44; padding: 6px 14px; border-radius: 30px;">
+                        <i class="fas fa-university"></i> Banco: De una
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN: ÚLTIMOS 5 VIDEOS DE @CHURONINI (EMBED REAL DE TIKTOK) -->
-        <div class="video-showcase">
-            <h2><i class="fab fa-tiktok"></i> Últimos videos de TikTok <i class="fas fa-play-circle"></i></h2>
-            <div id="realTikTokFeed" class="video-grid-dynamic">
-                <!-- Los 5 videos se cargarán dinámicamente con el SDK oficial de TikTok -->
-                <div class="video-item" style="text-align:center; padding:2rem;">Cargando videos recientes... 🎬</div>
+        <!-- NUEVA GALERÍA: VIDEOS MANUALES CON INTERACCIÓN Y ENLACES DIRECTOS -->
+        <div class="video-gallery-section">
+            <h2><i class="fab fa-tiktok"></i> Nuestros últimos videos <i class="fas fa-arrow-right"></i></h2>
+            <div class="video-grid-custom" id="customVideoGallery">
+                <!-- Los 4 videos se construirán con JavaScript para un render más limpio -->
             </div>
             <div class="fallback-note">
-                <i class="fas fa-info-circle"></i> Videos extraídos directamente del perfil @churonini · actualizados automáticamente.
+                <i class="fas fa-hand-pointer"></i> Haz clic en cualquier video para verlo directamente en TikTok
             </div>
         </div>
 
@@ -401,109 +431,140 @@ footer {
 </div>
 
 <script>
-// ----- TOGGLE para información bancaria (Transferencia/Depósito) -----
-const showBankBtn = document.getElementById('showBankBtn');
-const bankInfoDiv = document.getElementById('bankInfoBlock');
-
-if (showBankBtn && bankInfoDiv) {
-    showBankBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (bankInfoDiv.style.display === 'none' || bankInfoDiv.style.display === '') {
-            bankInfoDiv.style.display = 'flex';
-            bankInfoDiv.style.justifyContent = 'center';
-        } else {
-            bankInfoDiv.style.display = 'none';
-        }
-    });
-    // inicialmente oculto
-    bankInfoDiv.style.display = 'none';
-}
-
-// ---------- MOSTRAR LOS ÚLTIMOS 5 VIDEOS REALES DE @churonini ----------
-const feedContainer = document.getElementById('realTikTokFeed');
-
-async function fetchLatestTikTokVideos(username) {
-    try {
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://www.tiktok.com/@${username}`)}`;
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error('No se pudo obtener el perfil');
-        const html = await response.text();
-        
-        // Extraer IDs de video del HTML usando regex flexible
-        const regex = new RegExp(`/@${username}/video/(\\d+)`, 'gi');
-        const matches = [...html.matchAll(regex)];
-        const uniqueIds = [...new Map(matches.map(m => [m[1], m[1]])).values()];
-        const top5Ids = uniqueIds.slice(0, 5);
-        return top5Ids;
-    } catch (err) {
-        console.warn("Error extrayendo feeds dinámicos", err);
-        return null;
+    // ----- TOGGLE para información bancaria -----
+    const showBankBtn = document.getElementById('showBankBtn');
+    const bankInfoDiv = document.getElementById('bankInfoBlock');
+    if (showBankBtn && bankInfoDiv) {
+        showBankBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (bankInfoDiv.style.display === 'none' || bankInfoDiv.style.display === '') {
+                bankInfoDiv.style.display = 'flex';
+                bankInfoDiv.style.justifyContent = 'center';
+            } else {
+                bankInfoDiv.style.display = 'none';
+            }
+        });
+        bankInfoDiv.style.display = 'none';
     }
-}
 
-function renderVideoEmbeds(videoIds, username) {
-    if (!videoIds || videoIds.length === 0) {
-        feedContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">
-            <i class="fab fa-tiktok"></i> No se pudieron cargar los videos automáticamente. 
-            <br>Visita el perfil <a href="https://www.tiktok.com/@${username}" target="_blank" style="color:#ff7eb3;">@${username}</a> para verlos.
-        </div>`;
-        return;
-    }
-    
-    feedContainer.innerHTML = '';
-    for (let vidId of videoIds) {
-        const videoUrl = `https://www.tiktok.com/@${username}/video/${vidId}`;
-        const wrapperDiv = document.createElement('div');
-        wrapperDiv.className = 'video-item';
+    // Lista de enlaces de TikTok proporcionados (short links)
+    const videoUrls = [
+        "https://vt.tiktok.com/ZSx9btrqq/",
+        "https://vt.tiktok.com/ZSx9bwvv2/",
+        "https://vt.tiktok.com/ZSx9bXvxD/",
+        "https://vt.tiktok.com/ZSx9b4x7F/"
+    ];
+
+    // Función para generar el embed de TikTok usando bloque blockquote (oficial)
+    function generateTikTokEmbed(videoUrl, containerId) {
+        // Creamos un contenedor div para el bloque blockquote
+        const embedContainer = document.createElement('div');
+        embedContainer.className = 'tiktok-embed-wrapper';
         const blockquote = document.createElement('blockquote');
         blockquote.className = 'tiktok-embed';
         blockquote.setAttribute('cite', videoUrl);
-        blockquote.setAttribute('data-video-id', vidId);
         blockquote.style.maxWidth = '100%';
-        blockquote.style.minWidth = '250px';
-        const aTag = document.createElement('a');
-        aTag.href = videoUrl;
-        aTag.target = '_blank';
-        aTag.textContent = 'Ver en TikTok';
-        blockquote.appendChild(aTag);
-        wrapperDiv.appendChild(blockquote);
-        feedContainer.appendChild(wrapperDiv);
-    }
-    // Forzar a que el script de TikTok reconozca los nuevos embeds
-    if (window.TikTokEmbed) {
-        window.TikTokEmbed.load();
-    } else {
-        const checkExist = setInterval(() => {
-            if (window.TikTokEmbed && typeof window.TikTokEmbed.load === 'function') {
-                window.TikTokEmbed.load();
-                clearInterval(checkExist);
+        blockquote.style.minWidth = '200px';
+        blockquote.style.margin = '0';
+        blockquote.style.padding = '0';
+        // Enlace de respaldo
+        const a = document.createElement('a');
+        a.href = videoUrl;
+        a.target = '_blank';
+        a.textContent = 'Ver en TikTok';
+        blockquote.appendChild(a);
+        embedContainer.appendChild(blockquote);
+        
+        // Limpiar el contenedor y agregar el bloque
+        const targetDiv = document.getElementById(containerId);
+        if (targetDiv) {
+            targetDiv.innerHTML = '';
+            targetDiv.appendChild(embedContainer);
+            // Forzar recarga del SDK de TikTok para que renderice el nuevo embed
+            if (window.TikTokEmbed) {
+                setTimeout(() => window.TikTokEmbed.load(), 100);
+            } else {
+                const checkTikTok = setInterval(() => {
+                    if (window.TikTokEmbed && typeof window.TikTokEmbed.load === 'function') {
+                        window.TikTokEmbed.load();
+                        clearInterval(checkTikTok);
+                    }
+                }, 300);
             }
-        }, 500);
+        }
     }
-}
 
-// Cargar los videos al iniciar
-(async function initLatestVideos() {
-    const username = 'churonini';
-    const videoIds = await fetchLatestTikTokVideos(username);
-    if (videoIds && videoIds.length > 0) {
-        renderVideoEmbeds(videoIds, username);
-    } else {
-        // fallback elegante con enlace al perfil
-        feedContainer.innerHTML = `
-            <div style="grid-column:1/-1; background: #2b1e3e; border-radius: 2rem; padding: 1.6rem; text-align: center;">
-                <i class="fab fa-tiktok" style="font-size: 2rem; color:#25F4EE;"></i>
-                <p style="margin: 1rem 0;"><strong>Conecta con los últimos 5 videos de @churonini</strong><br>
-                Visita su perfil de TikTok y descubre todo el contenido familiar 💖</p>
-                <a href="https://www.tiktok.com/@${username}" target="_blank" style="background:#ff4f87; padding:0.6rem 1.8rem; border-radius: 40px; display:inline-block; margin-top: 6px; text-decoration:none; color:white; font-weight:600;">Ver perfil completo →</a>
-            </div>
-        `;
+    // Construir galería manualmente: cada tarjeta con un contenedor único + enlace directo en el wrapper
+    const galleryContainer = document.getElementById('customVideoGallery');
+    if (galleryContainer) {
+        galleryContainer.innerHTML = '';
+        videoUrls.forEach((url, index) => {
+            const card = document.createElement('div');
+            card.className = 'video-card-custom';
+            // Envolvemos la tarjeta en un enlace que lleva directamente a TikTok
+            const linkWrapper = document.createElement('a');
+            linkWrapper.href = url;
+            linkWrapper.target = '_blank';
+            linkWrapper.rel = 'noopener noreferrer';
+            linkWrapper.style.display = 'block';
+            linkWrapper.style.textDecoration = 'none';
+            linkWrapper.style.color = 'inherit';
+            
+            // Miniatura / preview: incrustamos el mismo embed de TikTok, pero deshabilitamos la interacción directa
+            const embedArea = document.createElement('div');
+            embedArea.className = 'video-thumb-wrapper';
+            // Asignamos un ID único para cada embed
+            const embedId = `tiktokEmbed_${index}`;
+            embedArea.id = embedId;
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'video-info';
+            infoDiv.innerHTML = '<i class="fab fa-tiktok"></i> Ver en TikTok <i class="fas fa-external-link-alt"></i>';
+            
+            linkWrapper.appendChild(embedArea);
+            linkWrapper.appendChild(infoDiv);
+            card.appendChild(linkWrapper);
+            galleryContainer.appendChild(card);
+            
+            // Cargar el embed dentro del contenedor específico
+            setTimeout(() => {
+                const embedContainer = document.getElementById(embedId);
+                if (embedContainer) {
+                    const blockquote = document.createElement('blockquote');
+                    blockquote.className = 'tiktok-embed';
+                    blockquote.setAttribute('cite', url);
+                    blockquote.style.maxWidth = '100%';
+                    blockquote.style.height = '100%';
+                    blockquote.style.minWidth = '200px';
+                    blockquote.style.margin = '0';
+                    blockquote.style.padding = '0';
+                    const aTag = document.createElement('a');
+                    aTag.href = url;
+                    aTag.target = '_blank';
+                    aTag.textContent = 'Ver en TikTok';
+                    blockquote.appendChild(aTag);
+                    embedContainer.innerHTML = '';
+                    embedContainer.appendChild(blockquote);
+                    
+                    if (window.TikTokEmbed) {
+                        window.TikTokEmbed.load();
+                    } else {
+                        const waitForSDK = setInterval(() => {
+                            if (window.TikTokEmbed) {
+                                window.TikTokEmbed.load();
+                                clearInterval(waitForSDK);
+                            }
+                        }, 400);
+                    }
+                }
+            }, 50);
+        });
     }
-})();
-
-window.addEventListener('load', function() {
-    if (window.TikTokEmbed) window.TikTokEmbed.load();
-});
+    
+    // Asegurar que el SDK de TikTok cargue cualquier embed posterior
+    window.addEventListener('load', () => {
+        if (window.TikTokEmbed) window.TikTokEmbed.load();
+    });
 </script>
 </body>
 </html>
